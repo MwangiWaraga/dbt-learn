@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    description: Clone of a Postgress Application Database
+    database: dbt-tutorial
+    schema: jaffle_shop
+    tables:
+      - name: customers
+        description: raw customer data
+        columns:
+          - name: id
+            data_tests:
+              - unique
+              - not_null
+            description: Primary key for customers data
+              
+      - name: orders
+        description: raw orders data
+        columns:
+          - name: id
+            data_tests:
+              - unique
+              - not_null
+        freshness: 
+          error_after:
+            count: 18
+            period: hour
+          warn_after:
+            count: 10
+            period: hour
+        loaded_at_field: _etl_loaded_at
+      
