@@ -8,17 +8,15 @@ sources:
       - name: stripe_payments
       - name: jaffle_shop_orders
 
-
   - name: stripe
     database: dbt-tutorial
     tables:
-    - name: payment
+      - name: payment
     loaded_at_field: _batched_at
-    freshness: 
+    freshness:
       error_after:
         count: 5
         period: hour
       warn_after:
         count: 3
         period: hour
-    
